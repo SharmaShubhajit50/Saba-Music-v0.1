@@ -316,12 +316,12 @@ async def play(interaction: discord.Interaction, query: str):
             print(f"❌ Playback Error: {e}")
             await interaction.followup.send(f"⚠️ Facing problem to play the song. Working on it. Hold tight...")
 
-            
-    #         vc = await channel.connect(self_deaf=True, timeout=60.0, reconnect=True)
-    #     except asyncio.TimeoutError:
-    #         return await interaction.followup.send("❌retrying, delayed in connecting to vc.")
-    # else:
-    #     vc = interaction.guild.voice_client
+            # last uupdate
+            vc = await channel.connect(self_deaf=True, timeout=60.0, reconnect=True)
+        except asyncio.TimeoutError:
+            return await interaction.followup.send("❌retrying, delayed in connecting to vc.")
+    else:
+        vc = interaction.guild.voice_client # last uupdate
 
     # extract info
     info = ytdl.extract_info(f"ytsearch:{query}", download=False)["entries"][0]
@@ -488,4 +488,5 @@ keep_alive()
 # RUN 👇
 # =========================
 bot.run(TOKEN)
+
 
